@@ -1,0 +1,24 @@
+name: 'Upload Data to Databricks'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload_data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Upload Data to Databricks
+        run: |
+          # Set up Databricks CLI (dbx)
+          pip install databricks-cli
+
+          # Configure Databricks CLI
+          dbx configure --token "<databricks_token>" --url "<databricks_workspace_url>"
+
+          # Upload data to Databricks
+          dbx fs cp --recursive data/ dbfs:/mnt/data
