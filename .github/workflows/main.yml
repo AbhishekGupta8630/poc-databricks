@@ -1,4 +1,4 @@
-name: Send Data to Databricks
+name: Send Data to Databricks from Github
 
 on:
   push:
