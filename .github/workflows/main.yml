@@ -1,4 +1,4 @@
-name: Send Data to Databricks from Github
+name: Deployment
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   send_data:
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Set up Node.js
