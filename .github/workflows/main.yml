@@ -29,4 +29,4 @@ jobs:
 
       - name: Send Data to Databricks Workspace
         run: |
-          dbx fs cp --recursive path/to/data/ dbfs:/mnt/sample.txt
+          dbx fs cp --recursive path/to/data/ dbfs:gs://poc-databricks/data/sample.txt/
