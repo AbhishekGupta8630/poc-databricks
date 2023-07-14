@@ -1,4 +1,4 @@
-name: 'Load Data from GitHub Action'
+name: Send Data to Databricks
 
 on:
   push:
@@ -6,20 +6,21 @@ on:
       - main
 
 jobs:
-  upload_data:
+  send_data:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Upload Data to Databricks
+      - name: Install Databricks CLI (dbx)
         run: |
-          # Set up Databricks CLI (dbx)
           pip install databricks-cli
 
-          # Configure Databricks CLI
-          dbx configure --url "https://2802865079231275.5.gcp.databricks.com/recents?o=2802865079231275"
+      - name: Configure Databricks CLI
+        run: |
+          dbx configure --url "https://2802865079231275.5.gcp.databricks.com/recents?o=2802865079231275#"
 
-          # Upload data to Databricks
-          dbx fs cp --recursive data/sample.txt
+      - name: Send Data to Databricks Workspace
+        run: |
+          dbx fs cp --recursive path/to/data/ dbfs:/mnt/sample.txt
