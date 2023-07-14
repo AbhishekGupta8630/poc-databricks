@@ -1,4 +1,5 @@
-name: 'Upload Data to Databricks'
+name: 'Load Data from GitHub Action'
+
 on:
   push:
     branches:
@@ -18,7 +19,7 @@ jobs:
           pip install databricks-cli
 
           # Configure Databricks CLI
-          dbx configure --token "<databricks_token>" --url "<databricks_workspace_url>"
+          dbx configure --url "https://2802865079231275.5.gcp.databricks.com/recents?o=2802865079231275"
 
           # Upload data to Databricks
-          dbx fs cp --recursive data/ dbfs:/mnt/data
+          dbx fs cp --recursive data/sample.txt
